@@ -4,6 +4,7 @@ package br.com.dojotdd.leilao;
 import br.com.dojotdd.leilao.dominio.Lance;
 import br.com.dojotdd.leilao.dominio.Leilao;
 import br.com.dojotdd.leilao.dominio.Usuario;
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -22,7 +23,9 @@ public class PrimeiroTest {
         leilao.propoe(lance1);
         leilao.propoe(lance2);
 
-        LeilaoService leilaoService = new Leilao
+        AvaliadorLanceLeilao leilaoService = new AvaliadorLanceLeilao(leilao);
+
+        Assert.assertEquals(1000.0,leilaoService.getMaiorLance());
     }
 
 }
