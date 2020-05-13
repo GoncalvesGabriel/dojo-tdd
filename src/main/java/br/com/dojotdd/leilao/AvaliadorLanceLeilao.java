@@ -7,12 +7,18 @@ public class AvaliadorLanceLeilao {
 
     private Leilao leilao;
 
-    public AvaliadorLanceLeilao(Leilao leilao){
+    public AvaliadorLanceLeilao(Leilao leilao) {
         this.leilao = leilao;
     }
 
-    public getMaiorLance(){
-
+    public double getMaiorValorDeLance() {
+        double maior = Double.NEGATIVE_INFINITY;
+        for (Lance lance : leilao.getLances()) {
+            if (lance.getValor() > maior) {
+                maior = lance.getValor();
+            }
+        }
+        return maior;
     }
 
 }
