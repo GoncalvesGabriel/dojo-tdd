@@ -1,14 +1,19 @@
 package br.com.dojotdd.leilao;
 
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+
 import br.com.dojotdd.leilao.dominio.Lance;
 import br.com.dojotdd.leilao.dominio.Leilao;
 import br.com.dojotdd.leilao.dominio.Usuario;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 /**
+ * Teste de
+ * dado - quando - entao
+ *
  * @author vitor.alves
  */
 public class AvaliadorLanceLeilaoTest {
@@ -21,16 +26,21 @@ public class AvaliadorLanceLeilaoTest {
 
     private Leilao leilao;
 
+    private AvaliadorLanceLeilao avaliadorLanceLeilao;
+
     @Before
-    public void before(){
-         gabes = new Usuario("Gabes");
-         vitinho = new Usuario("Vitor");
-         leirbag = new Usuario("seravat");
-         leilao = new Leilao("Dignidade do gabriel");
+    public void before() {
+        // given
+        gabes = new Usuario("Gabes");
+        vitinho = new Usuario("Vitor");
+        leirbag = new Usuario("seravat");
+        leilao = new Leilao("Dignidade do gabriel");
+        avaliadorLanceLeilao = new AvaliadorLanceLeilao(leilao);
     }
 
     @Test
     public void validaLanceComValoresAleatorios() {
+        // given
         Lance lance1 = new Lance(gabes, -150.0);
         Lance lance2 = new Lance(vitinho, -78);
         Lance lance = new Lance(leirbag, -1000.0);
@@ -39,10 +49,12 @@ public class AvaliadorLanceLeilaoTest {
         leilao.propoe(lance1);
         leilao.propoe(lance2);
 
-        AvaliadorLanceLeilao avaliadorLanceLeilao = new AvaliadorLanceLeilao(leilao);
+        // when
         avaliadorLanceLeilao.avaliarLance();
-        Assert.assertEquals(-78, avaliadorLanceLeilao.getMaiorValorDeLance(), 0.0001);
-        Assert.assertEquals(-1000.0, avaliadorLanceLeilao.getMenorValorDeLance(), 0.0001);
+
+        // then
+        assertThat(avaliadorLanceLeilao.getMaiorValorDeLance(), equalTo(-78D));
+        assertThat(avaliadorLanceLeilao.getMenorValorDeLance(), equalTo(-1000D));
     }
 
     @Test
@@ -50,15 +62,13 @@ public class AvaliadorLanceLeilaoTest {
         Lance lance = new Lance(gabes, 1000.0);
         Lance lance1 = new Lance(vitinho, 150.0);
         Lance lance2 = new Lance(leirbag, -78);
-        Leilao leilao = new Leilao("Dignidade do gabriel");
         leilao.propoe(lance);
         leilao.propoe(lance1);
         leilao.propoe(lance2);
 
-        AvaliadorLanceLeilao avaliadorLanceLeilao = new AvaliadorLanceLeilao(leilao);
         avaliadorLanceLeilao.avaliarLance();
-        Assert.assertEquals(1000.0, avaliadorLanceLeilao.getMaiorValorDeLance(), 0.0001);
-        Assert.assertEquals(-78.0, avaliadorLanceLeilao.getMenorValorDeLance(), 0.0001);
+        assertThat(avaliadorLanceLeilao.getMaiorValorDeLance(), equalTo(1000D));
+        assertThat(avaliadorLanceLeilao.getMenorValorDeLance(), equalTo(-78D));
     }
 
     @Test
@@ -66,27 +76,23 @@ public class AvaliadorLanceLeilaoTest {
         Lance lance = new Lance(gabes, 1000.0);
         Lance lance1 = new Lance(vitinho, 1500.0);
         Lance lance2 = new Lance(leirbag, 7800.0);
-        Leilao leilao = new Leilao("Dignidade do gabriel");
         leilao.propoe(lance);
         leilao.propoe(lance1);
         leilao.propoe(lance2);
 
-        AvaliadorLanceLeilao avaliadorLanceLeilao = new AvaliadorLanceLeilao(leilao);
         avaliadorLanceLeilao.avaliarLance();
-        Assert.assertEquals(7800.0, avaliadorLanceLeilao.getMaiorValorDeLance(), 0.0001);
-        Assert.assertEquals(1000.0, avaliadorLanceLeilao.getMenorValorDeLance(), 0.0001);
+        assertThat(avaliadorLanceLeilao.getMaiorValorDeLance(), equalTo(7800D));
+        assertThat(avaliadorLanceLeilao.getMenorValorDeLance(), equalTo(1000D));
     }
 
     @Test
     public void validaLanceComApenasUmValor() {
         Lance lance = new Lance(gabes, 1000.0);
-        Leilao leilao = new Leilao("Dignidade do gabriel");
         leilao.propoe(lance);
 
-        AvaliadorLanceLeilao avaliadorLanceLeilao = new AvaliadorLanceLeilao(leilao);
         avaliadorLanceLeilao.avaliarLance();
-        Assert.assertEquals(1000.0, avaliadorLanceLeilao.getMaiorValorDeLance(), 0.0001);
-        Assert.assertEquals(1000.0, avaliadorLanceLeilao.getMenorValorDeLance(), 0.0001);
+        assertThat(avaliadorLanceLeilao.getMaiorValorDeLance(), equalTo(1000D));
+        assertThat(avaliadorLanceLeilao.getMenorValorDeLance(), equalTo(1000D));
     }
 
 }
