@@ -10,6 +10,16 @@ public class Lance {
 		this.valor = valor;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		return super.equals(obj);
+	}
+
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+
 	public Usuario getUsuario() {
 		return usuario;
 	}
