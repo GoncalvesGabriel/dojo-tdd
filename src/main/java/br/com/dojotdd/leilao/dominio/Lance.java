@@ -1,5 +1,7 @@
 package br.com.dojotdd.leilao.dominio;
 
+import java.util.Objects;
+
 public class Lance {
 
 	private Usuario usuario;
@@ -10,16 +12,6 @@ public class Lance {
 		this.valor = valor;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		return super.equals(obj);
-	}
-
-	@Override
-	public int hashCode() {
-		return super.hashCode();
-	}
-
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -27,7 +19,22 @@ public class Lance {
 	public double getValor() {
 		return valor;
 	}
-	
-	
-	
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+		Lance lance = (Lance) o;
+		return Double.compare(lance.valor, valor) == 0 &&
+			usuario.equals(lance.usuario);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(usuario, valor);
+	}
 }
