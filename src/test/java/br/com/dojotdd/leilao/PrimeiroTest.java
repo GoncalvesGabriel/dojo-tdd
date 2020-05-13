@@ -40,12 +40,25 @@ public class PrimeiroTest {
         leilao.propoe(lance2);
 
         AvaliadorLanceLeilao avaliadorLanceLeilao = new AvaliadorLanceLeilao(leilao);
-
+        avaliadorLanceLeilao.avaliarLance();
         Assert.assertEquals(-78, avaliadorLanceLeilao.getMaiorValorDeLance(), 0.0001);
     }
 
     @Test
     public void validaMenorLance() {
+        Usuario usuario = new Usuario("Gabes");
+        Lance lance = new Lance(usuario, 1000.0);
+        Lance lance1 = new Lance(usuario, 150.0);
+        Lance lance2 = new Lance(usuario, -78);
+        Leilao leilao = new Leilao("Dignidade do gabriel");
+        leilao.propoe(lance);
+        leilao.propoe(lance1);
+        leilao.propoe(lance2);
+
+        AvaliadorLanceLeilao avaliadorLanceLeilao = new AvaliadorLanceLeilao(leilao);
+        avaliadorLanceLeilao.avaliarLance();
+        Assert.assertEquals(-78, avaliadorLanceLeilao.getMenorValorDeLance(), 0.0001);
+
 
     }
 
