@@ -50,4 +50,10 @@ public class LeilaoTest {
         Assert.assertEquals(leilaoDaMaps.getLances().get(1), new Lance(vitinho, 2000.0));
         Assert.assertEquals(leilaoDaMaps.getLances().get(2), new Lance(leirbag, 1500.0));
     }
+
+    @Test
+    public void naoDeveAceitarMaisQueCincoLancesPorUsuario(){
+        Map<String, int> usuarioLance;
+
+    }
 }

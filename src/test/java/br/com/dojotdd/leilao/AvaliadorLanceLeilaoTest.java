@@ -14,10 +14,12 @@ public class AvaliadorLanceLeilaoTest {
 
     @Test
     public void validaLanceComValoresAleatorios() {
-        Usuario usuario = new Usuario("Gabes");
-        Lance lance1 = new Lance(usuario, -150.0);
-        Lance lance2 = new Lance(usuario, -78);
-        Lance lance = new Lance(usuario, -1000.0);
+        Usuario gabes = new Usuario("Gabes");
+        Usuario vitinho = new Usuario("Vitor");
+        Usuario leirbag = new Usuario("seravat");
+        Lance lance1 = new Lance(gabes, -150.0);
+        Lance lance2 = new Lance(vitinho, -78);
+        Lance lance = new Lance(leirbag, -1000.0);
         Leilao leilao = new Leilao("Dignidade do gabriel");
         leilao.propoe(lance);
         leilao.propoe(lance1);
@@ -31,10 +33,12 @@ public class AvaliadorLanceLeilaoTest {
 
     @Test
     public void validaLanceDecresente() {
-        Usuario usuario = new Usuario("Gabes");
-        Lance lance = new Lance(usuario, 1000.0);
-        Lance lance1 = new Lance(usuario, 150.0);
-        Lance lance2 = new Lance(usuario, -78);
+        Usuario gabes = new Usuario("Gabes");
+        Usuario vitinho = new Usuario("Vitor");
+        Usuario leirbag = new Usuario("seravat");
+        Lance lance = new Lance(gabes, 1000.0);
+        Lance lance1 = new Lance(vitinho, 150.0);
+        Lance lance2 = new Lance(leirbag, -78);
         Leilao leilao = new Leilao("Dignidade do gabriel");
         leilao.propoe(lance);
         leilao.propoe(lance1);
@@ -48,10 +52,12 @@ public class AvaliadorLanceLeilaoTest {
 
     @Test
     public void validaLanceValoresCresente() {
-        Usuario usuario = new Usuario("Gabes");
-        Lance lance = new Lance(usuario, 1000.0);
-        Lance lance1 = new Lance(usuario, 1500.0);
-        Lance lance2 = new Lance(usuario, 7800.0);
+        Usuario gabes = new Usuario("Gabes");
+        Usuario vitinho = new Usuario("Vitor");
+        Usuario leirbag = new Usuario("seravat");
+        Lance lance = new Lance(gabes, 1000.0);
+        Lance lance1 = new Lance(vitinho, 1500.0);
+        Lance lance2 = new Lance(leirbag, 7800.0);
         Leilao leilao = new Leilao("Dignidade do gabriel");
         leilao.propoe(lance);
         leilao.propoe(lance1);
