@@ -5,6 +5,8 @@ import java.util.List;
 
 public class Leilao {
 
+	private static final int LIMITE_DE_LANCE_POR_USUARIO = 6;
+
 	private String descricao;
 
 	private List<Lance> lances;
@@ -15,7 +17,13 @@ public class Leilao {
 	}
 	
 	public void propoe(Lance lance) {
-		if (lances.isEmpty() || !this.getUltimoLanceAdicionado().getUsuario().equals(lance.getUsuario())) {
+		int contDeLanceDeUsuario = 0;
+		for (Lance lance1 : lances) {
+			if (lance.getUsuario().equals(lance1.getUsuario())) {
+				contDeLanceDeUsuario++;
+			}
+		}
+		if (lances.isEmpty() || (!this.getUltimoLanceAdicionado().getUsuario().equals(lance.getUsuario()) && contDeLanceDeUsuario < LIMITE_DE_LANCE_POR_USUARIO)) {
 			lances.add(lance);
 		}
 	}
