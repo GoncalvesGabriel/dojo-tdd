@@ -23,17 +23,14 @@ public class AvaliadorLanceLeilao {
         return menor;
     }
 
-    public void avaliarLance(){
-        for(Lance lance : leilao.getLances()){
-            if(lance.getValor() > maior){
+    public void avaliarLance() {
+        for (Lance lance : leilao.getLances()) {
+            if (lance.getValor() > maior) {
                 maior = lance.getValor();
             }
-            if(lance.getValor() < menor){
+            if (lance.getValor() < menor) {
                 menor = lance.getValor();
             }
         }
-
     }
-
-
 }
