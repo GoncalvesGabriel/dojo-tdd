@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Leilao {
 
-	private static final int LIMITE_DE_LANCE_POR_USUARIO = 6;
+	private static final int LIMITE_DE_LANCE_POR_USUARIO = 5;
 
 	private String descricao;
 
@@ -17,15 +17,31 @@ public class Leilao {
 	}
 	
 	public void propoe(Lance lance) {
+		if (lances.isEmpty() || permiteLanceDoUsuario(lance.getUsuario())) {
+			lances.add(lance);
+		}
+	}
+
+	private boolean permiteLanceDoUsuario(Usuario usuario) {
+		return verificaSeMesmoUsuarioUltimoLance(usuario) && usuarioNaoEstorouLimiteLances(usuario);
+	}
+
+	private boolean verificaSeMesmoUsuarioUltimoLance(Usuario usuario) {
+		return !usuario.equals(this.getUltimoLanceAdicionado().getUsuario());
+	}
+
+	private boolean usuarioNaoEstorouLimiteLances(Usuario usuario) {
+		return countQuantidadeLancesUsuario(usuario) < LIMITE_DE_LANCE_POR_USUARIO;
+	}
+
+	private int countQuantidadeLancesUsuario(Usuario usuario) {
 		int contDeLanceDeUsuario = 0;
-		for (Lance lance1 : lances) {
-			if (lance.getUsuario().equals(lance1.getUsuario())) {
+		for (Lance lance : lances) {
+			if (usuario.equals(lance.getUsuario())) {
 				contDeLanceDeUsuario++;
 			}
 		}
-		if (lances.isEmpty() || (!this.getUltimoLanceAdicionado().getUsuario().equals(lance.getUsuario()) && contDeLanceDeUsuario < LIMITE_DE_LANCE_POR_USUARIO)) {
-			lances.add(lance);
-		}
+		return contDeLanceDeUsuario;
 	}
 
 	private Lance getUltimoLanceAdicionado() {
