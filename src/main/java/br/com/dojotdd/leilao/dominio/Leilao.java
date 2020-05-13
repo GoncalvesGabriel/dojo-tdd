@@ -1,5 +1,4 @@
-package br.com.caelum.leilao.dominio;
-
+package br.com.dojotdd.leilao.dominio;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -7,6 +6,7 @@ import java.util.List;
 public class Leilao {
 
 	private String descricao;
+
 	private List<Lance> lances;
 	
 	public Leilao(String descricao) {
