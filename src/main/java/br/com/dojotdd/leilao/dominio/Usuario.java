@@ -1,4 +1,6 @@
-package br.com.caelum.leilao.dominio;
+package br.com.dojotdd.leilao.dominio;
+
+import java.util.Objects;
 
 public class Usuario {
 
@@ -21,7 +23,22 @@ public class Usuario {
 	public String getNome() {
 		return nome;
 	}
-	
-	
-	
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+		Usuario usuario = (Usuario) o;
+		return id == usuario.id &&
+			nome.equals(usuario.nome);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, nome);
+	}
 }
